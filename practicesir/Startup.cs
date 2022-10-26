@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.services;
 
 namespace practicesir
 {
@@ -24,6 +25,8 @@ namespace practicesir
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddTransient<JsonBookFiless>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
