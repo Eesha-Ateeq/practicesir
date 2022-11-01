@@ -28,6 +28,7 @@ namespace practicesir
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
             services.AddTransient<JsonBookFiless>();
 
         }
@@ -56,15 +57,9 @@ namespace practicesir
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapGet("/BookRecord", (context)=>
-                {
-                    IEnumerable<book> BookRecord = app.ApplicationServices.GetService<JsonBookFiless>().getBooksData();
-                    var JsonBookRecord = JsonSerializer.Serialize<IEnumerable<book>>(BookRecord);
-                    return context.Response.WriteAsync(JsonBookRecord);
-                });
-            
+                endpoints.MapControllers();
+                
 
-            
             });
         }
     }
