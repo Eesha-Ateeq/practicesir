@@ -27,7 +27,8 @@ namespace practicesir.Pages
 
         public void OnGet()
         {
-            Books = BookService.getBooksData();
+
         }
+        
     }
 }
