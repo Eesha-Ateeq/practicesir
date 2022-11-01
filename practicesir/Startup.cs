@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using WebApplication1.model;
 using WebApplication1.services;
 
 namespace practicesir
@@ -53,6 +56,15 @@ namespace practicesir
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapGet("/BookRecord", (context)=>
+                {
+                    IEnumerable<book> BookRecord = app.ApplicationServices.GetService<JsonBookFiless>().getBooksData();
+                    var JsonBookRecord = JsonSerializer.Serialize<IEnumerable<book>>(BookRecord);
+                    return context.Response.WriteAsync(JsonBookRecord);
+                });
+            
+
+            
             });
         }
     }
