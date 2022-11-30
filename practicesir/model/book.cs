@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace WebApplication1.model
+namespace Book_Shop.model
 {
     public class book
     {
